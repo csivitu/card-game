@@ -25,8 +25,8 @@
             width: 420px;
         }
         .card {
-            width: 100;
-            height: 100;
+            width: 100px;
+            height: 100px;
             background-color: #3498db;
             display: flex;
             justify-content: center;
@@ -35,6 +35,8 @@
             color: white;
             cursor: pointer;
             transition: transform 0.3s;
+            border-radius: 10px;
+            user-select: none;
         }
         .card:hover {
             transform: scale(1.05);
@@ -55,10 +57,11 @@
         const cardValues = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
         const cards = [...cardValues, ...cardValues];
         let flippedCards = [];
+        let matchedPairs = 0;
 
         function shuffleArray(array) {
             for (let i = array.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i));
+                const j = Math.floor(Math.random() * (i + 1));
                 [array[i], array[j]] = [array[j], array[i]];
             }
         }
@@ -69,25 +72,29 @@
             card.dataset.value = value;
             card.dataset.index = index;
             card.addEventListener('click', flipCard);
+            return card;
         }
 
         function flipCard() {
             if (flippedCards.length === 2 || this.classList.contains('flipped')) return;
+
             this.textContent = this.dataset.value;
-            this.classList.ad('flipped'); 
+            this.classList.add('flipped');
             flippedCards.push(this);
 
-            if (flippedCards.length === 1) {
+            if (flippedCards.length === 2) {
                 setTimeout(checkMatch, 500);
             }
         }
 
         function checkMatch() {
             const [card1, card2] = flippedCards;
+
             if (card1.dataset.value === card2.dataset.value) {
                 matchedPairs++;
                 document.getElementById('match-count').textContent = matchedPairs;
-                if (matchedPairs === cards.length / 2) { 
+
+                if (matchedPairs === cards.length / 2) {
                     setTimeout(() => alert('Congratulations! You won!'), 300);
                 }
             } else {
@@ -96,22 +103,21 @@
                     card2.textContent = '';
                     card1.classList.remove('flipped');
                     card2.classList.remove('flipped');
-                }, 300);
+                }, 500);
             }
-            flippedCards = []; 
+            flippedCards = [];
         }
 
         function initializeGame() {
-            shuffleArray(card); 
+            shuffleArray(cards);
             const cardGrid = document.getElementById('card-grid');
-            cards.forEach(value, index =>{
+            cards.forEach((value, index) => {
                 const card = createCard(value, index);
                 cardGrid.appendChild(card);
             });
-            let matchedPairs=0;
         }
 
-        initializeGame()
+        initializeGame();
     </script>
 </body>
 </html>
