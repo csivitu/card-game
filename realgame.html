@@ -51,7 +51,6 @@
             background-color: #0062ff; 
             color: white;
             border: none;
-        }
     </style>
 </head>
 <body>
@@ -99,7 +98,7 @@
                 matchedPairs++;
                 document.getElementById('match-count').textContent = matchedPairs;
                 if (matchedPairs === cardValues.length) { 
-                    setTimeout(() => alert('Congratulations! You won!'), 300);
+                    setTimeout(() => window.location.href = 'winpage.html', 300);
                 }
             } else {
                 setTimeout(() => {
