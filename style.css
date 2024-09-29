@@ -1,0 +1,104 @@
+:root {
+    --primary-color: #3498db;
+    --secondary-color: #2ecc71;
+    --background-color: #f0f0f0;
+    --text-color: white;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--background-color);
+    margin: 0;
+}
+
+#game-container, .container {
+    text-align: center;
+}
+
+.no-click {
+    pointer-events: none;
+}
+#card-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+    width: 420px;
+}
+
+.card {
+    width: 100px;
+    height: 100px;
+    background-color: var(--primary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card.flipped {
+    background-color: var(--secondary-color);
+}
+
+.container {
+    background: white;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    font-size: 48px;
+    color: #2ecc71;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.play-again {
+    font-size: 20px;
+    color: white;
+    background-color: #3498db;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.play-again:hover {
+    background-color: #2980b9;
+}
+
+#restart-game {
+    font-size: 20px;
+    color: white;
+    background-color: #e74c3c;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+}
+
+#restart-game:hover {
+    background-color: #c0392b;
+}
