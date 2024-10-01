@@ -31,12 +31,15 @@
             card.dataset.value = value;
             card.dataset.index = index;
             card.addEventListener('click', flipCard);
+
+
+            return card;
         }
 
         function flipCard() {
             if (flippedCards.length === 2 || this.classList.contains('flipped')) return;
             this.textContent = this.dataset.value;
-            this.classList.ad('flipped'); 
+            this.classList.add('flipped'); 
             flippedCards.push(this);
 
             if (flippedCards.length === 1) {
@@ -64,9 +67,9 @@
         }
 
         function initializeGame() {
-            shuffleArray(card); 
+            shuffleArray(cards); 
             const cardGrid = document.getElementById('card-grid');
-            cards.forEach(value, index =>{
+            cards.forEach((value, index) => {
                 const card = createCard(value, index);
                 cardGrid.appendChild(card);
             });
