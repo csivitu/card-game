@@ -35,7 +35,7 @@
 
             return card;
         }
-
+        let matchedPairs=0;
         function flipCard() {
             if (flippedCards.length === 2 || this.classList.contains('flipped')) return;
             this.textContent = this.dataset.value;
@@ -54,6 +54,7 @@
                 document.getElementById('match-count').textContent = matchedPairs;
                 if (matchedPairs === cards.length / 2) { 
                     setTimeout(() => alert('Congratulations! You won!'), 300);
+                flippedCards = [];
                 }
             } else {
                 setTimeout(() => {
@@ -73,7 +74,7 @@
                 const card = createCard(value, index);
                 cardGrid.appendChild(card);
             });
-            let matchedPairs=0;
+            
         }
 
         initializeGame()
