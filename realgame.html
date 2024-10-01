@@ -11,11 +11,13 @@
         <h1>Memory Card Game</h1>
         <p id="match">Matches: <span id="match-count">0</span></p>
         <div id="card-grid"></div>
+        <!-- Restart Button -->
+        <button id="restart-btn">Restart Game</button>
     </div>
 
     <script>
         const cardValues = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
-        const cards = [...cardValues, ...cardValues];
+        let cards = [...cardValues, ...cardValues];
         let flippedCards = [];
         let matchedPairs = 0;
         let isChecking = false;
@@ -69,14 +71,29 @@
         }
 
         function initializeGame() {
-            shuffleArray(cards);
+            // Clear the card grid
             const cardGrid = document.getElementById('card-grid');
+            cardGrid.innerHTML = '';
+
+            // Reset variables
+            matchedPairs = 0;
+            flippedCards = [];
+            document.getElementById('match-count').textContent = matchedPairs;
+
+            // Shuffle and create new cards
+            shuffleArray(cards);
             cards.forEach((value, index) => {
                 const card = createCard(value, index);
                 cardGrid.appendChild(card);
             });
         }
 
+        // event listener to restart the game
+        document.getElementById('restart-btn').addEventListener('click', () => {
+            initializeGame(); // Restart the game when the button is clicked
+        });
+
+        // Initialize the game on page load
         initializeGame();
     </script>
 </body>
